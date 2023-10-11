@@ -47,7 +47,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     //hybrid routes
-    // "/", //Enable this to force redirect based on role;
+    "/",
     "/auth/login",
     "/auth/signup",
 

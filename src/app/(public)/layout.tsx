@@ -4,6 +4,8 @@ import React from "react";
 import { Breadcrumb, Layout, Menu, Button, Spin } from "antd";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import { useAppDispatch } from "@/redux/hook";
+import { setPathName } from "@/redux/features/auth/authSlice";
 const { Header, Content, Footer } = Layout;
 
 export default function HomeLayout({
@@ -11,6 +13,7 @@ export default function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const dispatch: any = useAppDispatch();
   const { data: sessionData, status } = useSession();
 
   if (status === "loading") {
@@ -19,6 +22,14 @@ export default function HomeLayout({
         <Spin />
       </div>
     );
+  }
+
+  function handlePathName(e: any) {
+    const pathname = e.key;
+    if (pathname !== "auth/login") {
+      // getPathName(pathname);
+      dispatch(setPathName(pathname));
+    }
   }
 
   const menuItems = [
@@ -55,6 +66,7 @@ export default function HomeLayout({
       label: <Link href="/buyer/dashboard">Buyer Dashboard</Link>,
     },
   ];
+
   return (
     <>
       <Layout className="layout min-h-screen my-0">
@@ -74,13 +86,8 @@ export default function HomeLayout({
             mode="horizontal"
             defaultSelectedKeys={["10"]}
             items={menuItems}
-          >
-            {/* {menuItems.map((menuItem, index) => (
-              <Menu.Item key={index}>
-                <Link href={menuItem.href}>{menuItem.label}</Link>
-              </Menu.Item>
-            ))} */}
-          </Menu>
+            onClick={(e) => handlePathName(e)}
+          ></Menu>
           {sessionData ? (
             <Button type="primary" onClick={() => signOut()}>
               Signout

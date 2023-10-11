@@ -4,7 +4,11 @@ import { Spin } from "antd";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function Home() {
+export default function GeneraLUserLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { data: sessionData, status } = useSession();
 
   if (status === "loading") {
@@ -44,6 +48,7 @@ export default function Home() {
           </Link>
         )}
       </nav>
+      {children}
     </main>
   );
 }

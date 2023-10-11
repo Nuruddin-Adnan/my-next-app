@@ -9,9 +9,7 @@ export async function middleware(request: NextRequest) {
   // console.log(token, "token middleware");
   const { pathname } = request.nextUrl;
 
-  //  ! Pending work! use redux state to store pathname and send via login form
-
-  const hybridRoutes = ["/auth/login", "/auth/signup"];
+  const hybridRoutes = ["/", "/auth/login", "/auth/signup"];
   const generalUserAccesibleRoutes = ["/dashboard", "/my-profile"];
   const rolesRedirect: Record<string, unknown> = {
     admin: "http://localhost:3000/admin/dashboard",
@@ -49,7 +47,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     //hybrid routes
-    // "/", //Enable this to force redirect based on role;
+    "/",
     "/auth/login",
     "/auth/signup",
 

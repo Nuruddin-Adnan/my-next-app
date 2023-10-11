@@ -38,9 +38,10 @@ export const authOptions: AuthOptions = {
               ...verifiedToken,
             };
           }
+          return null;
         } catch (error: any) {
           console.log(error);
-          throw new Error(error.message);
+          return null;
         }
       },
     }),
@@ -82,6 +83,5 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/login",
-    error: "/",
   },
 };

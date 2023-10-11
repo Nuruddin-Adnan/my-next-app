@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type IProduct = {
