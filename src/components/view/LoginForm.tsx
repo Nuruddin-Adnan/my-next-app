@@ -34,7 +34,7 @@ export default function LoginForm() {
       if (result?.ok && !result.error) {
         setErrorMessage("");
         setLoadings(false);
-        router.push("/my-profile");
+        router.push("/");
       }
     } catch (error) {
       setLoadings(false);

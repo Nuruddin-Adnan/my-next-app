@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ConfigProvider } from "antd";
 import NextAuthSessionProvider from "@/providers/authProvider";
+import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,13 +22,15 @@ export default function RootLayout({
           // colorPrimary: "#00b96b",
           borderRadius: 4,
           fontFamily: "Roboto",
-          fontSize: 16,
+          fontSize: 14,
         },
       }}
     >
       <html lang="en">
         <body>
-          <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+          <Providers>
+            <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+          </Providers>
         </body>
       </html>
     </ConfigProvider>

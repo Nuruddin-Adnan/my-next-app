@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   // console.log(token, "token middleware");
   const { pathname } = request.nextUrl;
 
-  const hybridRoutes = ["/login", "/register"];
+  const hybridRoutes = ["/auth/login", "/auth/signup"];
   const generalUserAccesibleRoutes = ["/dashboard", "/my-profile"];
   const rolesRedirect: Record<string, unknown> = {
     admin: "http://localhost:3000/admin/dashboard",
@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     if (hybridRoutes.includes(pathname)) {
       return NextResponse.next();
     }
-    return NextResponse.redirect("http://localhost:3000/login");
+    return NextResponse.redirect("http://localhost:3000/auth/login");
   }
 
   const role = token?.role as string;
@@ -47,9 +47,9 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     //hybrid routes
-    "/",
-    "/login",
-    "/register",
+    // "/", //Enable this to force redirect based on role;
+    "/auth/login",
+    "/auth/signup",
 
     //general_user routes
     "/dashboard",
