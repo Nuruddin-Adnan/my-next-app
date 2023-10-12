@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   // console.log(token, "token middleware");
   const { pathname } = request.nextUrl;
 
-  const hybridRoutes = ["/", "/auth/login", "/auth/signup"];
+  const hybridRoutes = ["/auth/login", "/auth/signup"];
   const generalUserAccesibleRoutes = ["/dashboard", "/my-profile"];
   const rolesRedirect: Record<string, unknown> = {
     admin: "http://localhost:3000/admin/dashboard",

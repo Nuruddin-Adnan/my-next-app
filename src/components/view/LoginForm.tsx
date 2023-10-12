@@ -19,20 +19,24 @@ export default function LoginForm() {
   const onFinish = async (values: any) => {
     try {
       setLoadings(true);
-      signIn("your app name", {
+      const result = await signIn("your app name", {
         email: values.email,
         password: values.password,
         redirect: false,
-        callbackUrl: "/",
-      }).then((res) => {
-        if (res?.error) {
-          setLoadings(false);
-          setErrorMessage("Credentials Error");
-        } else {
-          setLoadings(false);
-          router.push("/");
-        }
+        callbackUrl: `/`,
       });
+
+      if (!result?.ok) {
+        setErrorMessage("Credentials Error");
+        setLoadings(false);
+        return false;
+      }
+
+      if (result?.ok && !result.error) {
+        setErrorMessage("");
+        setLoadings(false);
+        router.push("/");
+      }
     } catch (error) {
       setLoadings(false);
       setErrorMessage(`Error: ${error}`);

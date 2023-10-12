@@ -1,9 +1,15 @@
-import React from 'react'
+import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
+import React from "react";
 
-const Dashboard = () => {
+const Dashboard = async (request: NextRequest) => {
+  const token = await getToken({ req: request });
   return (
-    <h1>General User Dashboard</h1>
-  )
-}
+    <div>
+      <h1>General User Dashboard</h1>
+      <p>{JSON.stringify(token)}</p>
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
