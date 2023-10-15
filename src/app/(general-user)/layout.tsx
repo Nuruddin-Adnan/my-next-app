@@ -48,6 +48,7 @@ export default function GeneraLUserLayout({
           </Link>
         )}
       </nav>
+      {JSON.stringify(sessionData)}
       {children}
     </main>
   );
