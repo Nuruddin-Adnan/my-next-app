@@ -15,6 +15,8 @@ export default function SignupForm() {
   const [messageApi, contextHolder] = message.useMessage();
   const router = useRouter();
 
+
+
   const onFinish = async (values: any) => {
     setLoadings(true);
     if (values.password !== values.confirmPpassword) {
@@ -30,9 +32,12 @@ export default function SignupForm() {
     delete values.firstName;
     delete values.lastName;
     delete values.confirmPpassword;
+
     try {
       setLoadings(true);
       const result = await createUser(values);
+
+
       if (result.success) {
         messageApi.success("User created successfully!");
         setLoadings(false);
@@ -66,6 +71,7 @@ export default function SignupForm() {
         onFinishFailed={onFinishFailed}
         autoComplete="on"
       >
+
         <Form.Item<FieldType>
           label="First Name"
           name="firstName"

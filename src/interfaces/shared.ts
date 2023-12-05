@@ -10,4 +10,5 @@ export type IUser = {
   email?: string;
   password?: string;
   confirmPpassword?: string;
+  image?: string;
 };

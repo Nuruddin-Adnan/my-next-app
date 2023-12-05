@@ -1,7 +1,7 @@
 import { IUser } from "@/interfaces/shared";
 
 export default async function createUser(payload: IUser) {
-  const res = await fetch("http://localhost:5000/api/v1/auth/signup", {
+  const res = await fetch("http://localhost:5000/api/v1/auth/file-upload", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(payload),

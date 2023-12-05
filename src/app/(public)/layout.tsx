@@ -42,6 +42,10 @@ export default function HomeLayout({
       label: <Link href="/about">About</Link>,
     },
     {
+      key: "upload-image",
+      label: <Link href="/upload-image">Upload</Link>,
+    },
+    {
       key: "contact",
       label: <Link href="/contact">Contact</Link>,
     },
